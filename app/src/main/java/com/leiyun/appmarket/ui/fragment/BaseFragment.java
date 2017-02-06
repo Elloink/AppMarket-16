@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.leiyun.appmarket.ui.view.LoadingPage;
 import com.leiyun.appmarket.utils.UIUtils;
 
 /**
@@ -16,12 +17,13 @@ import com.leiyun.appmarket.utils.UIUtils;
  */
 
 public class BaseFragment extends Fragment {
+
+    private LoadingPage mLoadingPage;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView view = new TextView(UIUtils.getContext());
-        view.setTextColor(Color.GREEN);
-        view.setText(getClass().getSimpleName());
-        return view;
+        mLoadingPage = new LoadingPage(UIUtils.getContext());
+        return mLoadingPage;
     }
 }
