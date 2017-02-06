@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -22,11 +23,16 @@ public class MainActivity extends BaseActivity {
     private PagerTab mPagerTab;
     private ViewPager mViewPager;
     private MyAdapter mAdapter;
+    private ActionBar mActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mActionBar = getSupportActionBar();
+        mActionBar.setIcon(R.drawable.ic_launcher);
+        mActionBar.setDisplayUseLogoEnabled(true);
+        mActionBar.setDisplayShowHomeEnabled(true);
 
         mPagerTab = (PagerTab)findViewById(R.id.pager_tab);
         mViewPager = (ViewPager) findViewById(R.id.viewpage);
