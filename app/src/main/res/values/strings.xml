@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">电子市场</string>
+    <string name="remind_error_string">加载失败，请重试</string>
+    <string name="remind_empty_string">没有数据哦！</string>
+    <string name="image_description_loading_error">加载失败</string>
+    <string name="image_description_loading_empty">数据是空的</string>
 
     <string-array name="tab_names">
         <item>首页</item>
