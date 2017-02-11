@@ -9,6 +9,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.leiyun.appmarket.R;
+import com.leiyun.appmarket.domain.AppInfo;
+import com.leiyun.appmarket.http.protocol.HomeProtocol;
 import com.leiyun.appmarket.ui.adapter.MyBaseAdapter;
 import com.leiyun.appmarket.ui.holder.BaseHolder;
 import com.leiyun.appmarket.ui.holder.HomeHolder;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 
 public class HomeFragment extends BaseFragment {
 
-    private ArrayList<String> data;
+    private ArrayList<AppInfo> data;
 
     // 如果加载数据成功，就回调此方法,在主线程运行，加载成功才会运行
     @Override
@@ -41,37 +43,31 @@ public class HomeFragment extends BaseFragment {
     // 这个方法是运行在子线程中的，可以直接执行耗时的操作
     @Override
     public ResultState onLoad() {
+        HomeProtocol protocol = new HomeProtocol();
+        data = protocol.getData(0); // 加载第一页数据
 
-        data = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            data.add("测试数据" + i);
-        }
-
-        return ResultState.STATE_SUCCESS;
+        return check(data); // 校验数据并返回
     }
 
-    //
-    class HomeAdapter extends MyBaseAdapter<String> {
+    class HomeAdapter extends MyBaseAdapter<AppInfo> {
 
-
-        public HomeAdapter(ArrayList<String> data) {
+        public HomeAdapter(ArrayList<AppInfo> data) {
             super(data);
         }
 
         @Override
-        public BaseHolder getHolder() {
+        public BaseHolder<AppInfo> getHolder() {
             return new HomeHolder();
         }
 
         // 此方法在子线程调用
         @Override
-        public ArrayList<String> onLoadMore() {
-            ArrayList<String> moreData = new ArrayList<>();
-            for (int i = 0; i < 10; i++) {
-                moreData.add("测试更多数据" + i);
-            }
+        public ArrayList<AppInfo> onLoadMore() {
 
-            SystemClock.sleep(2000);
+            HomeProtocol protocol = new HomeProtocol();
+            // 下一页的数据位置等于当前集合的大小
+            ArrayList<AppInfo> moreData = protocol.getData(getListSize());
+
             return moreData;
         }
 
@@ -99,7 +95,6 @@ public class HomeFragment extends BaseFragment {
 //            return view;
 //        }
         //-----------------------------------------------
-
 
         @Override
         public boolean hasMore() {

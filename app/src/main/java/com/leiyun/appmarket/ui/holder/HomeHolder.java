@@ -4,13 +4,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.leiyun.appmarket.R;
+import com.leiyun.appmarket.domain.AppInfo;
 import com.leiyun.appmarket.utils.UIUtils;
 
 /**
  * Created by LeiYun on 2017/2/7 0007.
  */
 
-public class HomeHolder extends BaseHolder<String> {
+public class HomeHolder extends BaseHolder<AppInfo> {
 
     private TextView tvContent;
 
@@ -28,7 +29,7 @@ public class HomeHolder extends BaseHolder<String> {
      * @param data
      */
     @Override
-    public void refreshView(String data) {
-        tvContent.setText(data);
+    public void refreshView(AppInfo data) {
+        tvContent.setText(data.name);
     }
 }

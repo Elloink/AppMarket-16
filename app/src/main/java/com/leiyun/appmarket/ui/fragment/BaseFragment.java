@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.leiyun.appmarket.ui.view.LoadingPage;
 import com.leiyun.appmarket.utils.UIUtils;
 
+import java.util.ArrayList;
+
 /**
  * Created by LeiYun on 2017/2/6 0006.
  */
@@ -49,5 +51,21 @@ public abstract class BaseFragment extends Fragment {
         if (mLoadingPage != null) {
             mLoadingPage.loadData();
         }
+    }
+
+    // 对网路返回的数据合法性进行校验
+    public LoadingPage.ResultState check(Object obj) {
+        if (obj != null) {
+            if (obj instanceof ArrayList) {// 判断是否是集合
+                ArrayList list = (ArrayList)obj;
+
+                if (list.isEmpty()) {
+                    return LoadingPage.ResultState.STATE_EMPTY;
+                } else {
+                    return LoadingPage.ResultState.STATE_SUCCESS;
+                }
+            }
+        }
+        return LoadingPage.ResultState.STATE_ERROR;
     }
 }
