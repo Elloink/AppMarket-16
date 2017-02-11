@@ -1,6 +1,7 @@
 package com.leiyun.appmarket.ui.fragment;
 
 import android.graphics.Color;
+import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -62,6 +63,18 @@ public class HomeFragment extends BaseFragment {
             return new HomeHolder();
         }
 
+        // 此方法在子线程调用
+        @Override
+        public ArrayList<String> onLoadMore() {
+            ArrayList<String> moreData = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                moreData.add("测试更多数据" + i);
+            }
+
+            SystemClock.sleep(2000);
+            return moreData;
+        }
+
         //-------------------------------------------------
 
 //        @Override
@@ -87,6 +100,11 @@ public class HomeFragment extends BaseFragment {
 //        }
         //-----------------------------------------------
 
+
+        @Override
+        public boolean hasMore() {
+            return true;
+        }
     }
 
 //    static class ViewHolder {
