@@ -3,6 +3,7 @@ package com.leiyun.appmarket.ui.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.leiyun.appmarket.R;
@@ -59,6 +60,14 @@ public abstract class LoadingPage extends FrameLayout {
         // 初始化加载失败的布局
         if (mErrorPage == null) {
             mErrorPage = UIUtils.inflate(R.layout.page_error);
+            Button btnRetry = (Button) mErrorPage.findViewById(R.id.btn_retry);
+            btnRetry.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 重新加载网络数据
+                    loadData();
+                }
+            });
             addView(mErrorPage); //将页面错误的布局添加给当前的帧布局
         }
 
