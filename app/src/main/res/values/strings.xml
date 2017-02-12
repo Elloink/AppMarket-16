@@ -5,7 +5,10 @@
     <string name="remind_loading_string">加载中</string>
     <string name="image_description_loading_error">加载失败</string>
     <string name="image_description_loading_empty">数据是空的</string>
-
+    <string name="remind_item_app_name">应用名称</string>
+    <string name="remind_item_app_size_info">应用大小</string>
+    <string name="remind_item_download">下载</string>
+    <string name="remind_item_app_description">应用的描述</string>
 
     <string-array name="tab_names">
         <item>首页</item>
