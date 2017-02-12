@@ -1,8 +1,12 @@
 package com.leiyun.appmarket.ui.fragment;
 
+import android.graphics.Color;
 import android.view.View;
+import android.widget.TextView;
 
+import com.leiyun.appmarket.R;
 import com.leiyun.appmarket.ui.view.LoadingPage;
+import com.leiyun.appmarket.utils.UIUtils;
 
 /**
  * 游戏
@@ -12,11 +16,14 @@ import com.leiyun.appmarket.ui.view.LoadingPage;
 public class GameFragment extends BaseFragment {
     @Override
     public View onCreateSuccessView() {
-        return null;
+        TextView view = new TextView(UIUtils.getContext());
+        view.setText(getClass().getSimpleName());
+        view.setTextColor(Color.BLUE);
+        return view;
     }
 
     @Override
     public LoadingPage.ResultState onLoad() {
-        return LoadingPage.ResultState.STATE_EMPTY;
+        return LoadingPage.ResultState.STATE_SUCCESS;
     }
 }

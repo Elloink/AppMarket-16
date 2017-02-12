@@ -14,6 +14,7 @@ import com.leiyun.appmarket.utils.UIUtils;
 import com.lidroid.xutils.BitmapUtils;
 
 /**
+ * 首页holder
  * Created by LeiYun on 2017/2/7 0007.
  */
 
