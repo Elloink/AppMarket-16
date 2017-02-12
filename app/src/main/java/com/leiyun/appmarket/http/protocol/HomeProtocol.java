@@ -42,7 +42,7 @@ public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
                 info.name = jo1.getString("name");
                 info.packageName = jo1.getString("packageName");
                 info.size = jo1.getLong("size");
-                info.stars = jo1.getDouble("stars");
+                info.stars = (float)jo1.getDouble("stars");
                 appInfoList.add(info);
             }
 

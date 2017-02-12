@@ -3,13 +3,13 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/LightGrey"
     >
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/list_item_bg_selector"
@@ -35,6 +35,7 @@
                 android:text="@string/remind_item_app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:layout_toRightOf="@+id/iv_icon"
                 android:layout_marginLeft="5dp"
                 android:textSize="18sp"
@@ -44,15 +45,17 @@
             <RatingBar
                 android:id="@+id/rb_start"
                 android:layout_width="wrap_content"
-                android:layout_height="16dp"
+                android:layout_height="17dp"
                 android:layout_below="@+id/tv_name"
                 android:layout_toRightOf="@+id/iv_icon"
                 android:progressDrawable="@drawable/custom_ratingbar"
                 android:layout_marginTop="2dp"
                 android:layout_marginLeft="5dp"
+                android:isIndicator="true"
                 />
 
             <TextView
+                android:id="@+id/tv_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rb_start"
@@ -61,7 +64,7 @@
                 android:layout_marginTop="1dp"
                 android:text="@string/remind_item_app_size_info"
                 android:textColor="@color/gray"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 />
 
             <LinearLayout
@@ -102,11 +105,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:maxLines="2"
+            android:maxLines="1"
             android:text="@string/remind_item_app_description"
             android:textColor="@color/gray"
             android:textSize="16sp"
             />
     </LinearLayout>
-    
+
 </LinearLayout>

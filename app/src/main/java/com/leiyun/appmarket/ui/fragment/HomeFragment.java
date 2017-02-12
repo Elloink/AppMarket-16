@@ -1,6 +1,7 @@
 package com.leiyun.appmarket.ui.fragment;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.leiyun.appmarket.ui.holder.BaseHolder;
 import com.leiyun.appmarket.ui.holder.HomeHolder;
 import com.leiyun.appmarket.ui.view.LoadingPage;
 import com.leiyun.appmarket.ui.view.LoadingPage.ResultState;
+import com.leiyun.appmarket.ui.view.MyListView;
 import com.leiyun.appmarket.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class HomeFragment extends BaseFragment {
 //        TextView view = new TextView(UIUtils.getContext());
 //        view.setText(getClass().getSimpleName());
 //        view.setTextColor(Color.BLUE);
-        ListView view = new ListView(UIUtils.getContext());
+        MyListView view = new MyListView(UIUtils.getContext());
         view.setAdapter(new HomeAdapter(data));
         return view;
     }

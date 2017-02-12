@@ -13,5 +13,5 @@ public class AppInfo {
     public String name;
     public String packageName;
     public long size;
-    public double stars;
+    public float stars;
 }
