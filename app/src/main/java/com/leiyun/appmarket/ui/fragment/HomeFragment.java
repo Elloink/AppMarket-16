@@ -34,9 +34,6 @@ public class HomeFragment extends BaseFragment {
     // 如果加载数据成功，就回调此方法,在主线程运行，加载成功才会运行
     @Override
     public View onCreateSuccessView() {
-//        TextView view = new TextView(UIUtils.getContext());
-//        view.setText(getClass().getSimpleName());
-//        view.setTextColor(Color.BLUE);
         MyListView view = new MyListView(UIUtils.getContext());
         view.setAdapter(new HomeAdapter(data));
         return view;
