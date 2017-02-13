@@ -4,9 +4,12 @@ import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.leiyun.appmarket.R;
 import com.leiyun.appmarket.http.protocol.RecommendProtocol;
 import com.leiyun.appmarket.ui.view.LoadingPage;
+import com.leiyun.appmarket.ui.view.fly.ShakeListener;
 import com.leiyun.appmarket.ui.view.fly.StellarMap;
 import com.leiyun.appmarket.utils.UIUtils;
 
@@ -24,7 +27,7 @@ public class RecommendFragment extends BaseFragment {
 
     @Override
     public View onCreateSuccessView() {
-        StellarMap stellar = new StellarMap(UIUtils.getContext());
+        final StellarMap stellar = new StellarMap(UIUtils.getContext());
         stellar.setAdapter(new RecommendAdapter());
 
         // 随机的方式，将控件划分为9行6列的格子，然后在格子中随机展示
@@ -36,6 +39,14 @@ public class RecommendFragment extends BaseFragment {
 
         // 设置默认页面，第一组数据
         stellar.setGroup(0, true);
+
+        ShakeListener shake = new ShakeListener(UIUtils.getContext());
+        shake.setOnShakeListener(new ShakeListener.OnShakeListener() {
+            @Override
+            public void onShake() {
+                stellar.zoomIn();
+            }
+        });
 
         return stellar;
     }
@@ -71,10 +82,18 @@ public class RecommendFragment extends BaseFragment {
             // 因为position每组都会从0开始计数, 所以需要将前面几组数据的个数加起来,才能确定当前组获取数据的角标位置
             position += (group) * getCount(group - 1);
 
-            String keyword = data.get(position);
+            final String keyword = data.get(position);
 
             TextView view = new TextView(UIUtils.getContext());
             view.setText(keyword);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(
+                            UIUtils.getContext(), keyword, Toast.LENGTH_SHORT).show();
+                }
+            });
 
             Random random = new Random();
             // 随机大小, 16 - 25
