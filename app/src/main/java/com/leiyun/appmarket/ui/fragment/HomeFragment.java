@@ -14,6 +14,7 @@ import com.leiyun.appmarket.domain.AppInfo;
 import com.leiyun.appmarket.http.protocol.HomeProtocol;
 import com.leiyun.appmarket.ui.adapter.MyBaseAdapter;
 import com.leiyun.appmarket.ui.holder.BaseHolder;
+import com.leiyun.appmarket.ui.holder.HomeHeaderHolder;
 import com.leiyun.appmarket.ui.holder.HomeHolder;
 import com.leiyun.appmarket.ui.view.LoadingPage;
 import com.leiyun.appmarket.ui.view.LoadingPage.ResultState;
@@ -30,11 +31,22 @@ import java.util.ArrayList;
 public class HomeFragment extends BaseFragment {
 
     private ArrayList<AppInfo> data;
+    private ArrayList<String> pictures;
 
     // 如果加载数据成功，就回调此方法,在主线程运行，加载成功才会运行
     @Override
     public View onCreateSuccessView() {
         MyListView view = new MyListView(UIUtils.getContext());
+
+        // 给ListView增加头布局展示轮播条
+        HomeHeaderHolder header = new HomeHeaderHolder();
+        view.addHeaderView(header.getRootView()); // 先添加头布局，再setAdapter
+
+        if (pictures != null) {
+            // 设置轮播条数据
+            header.setData(pictures);
+        }
+
         view.setAdapter(new HomeAdapter(data));
         return view;
     }
@@ -44,7 +56,7 @@ public class HomeFragment extends BaseFragment {
     public ResultState onLoad() {
         HomeProtocol protocol = new HomeProtocol();
         data = protocol.getData(0); // 加载第一页数据
-
+        pictures = protocol.getPictureList();
         return check(data); // 校验数据并返回
     }
 
