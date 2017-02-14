@@ -22,8 +22,8 @@ import static android.os.Build.VERSION_CODES.M;
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
     // 注意：此处必须从0开始写，因为底层数据有可能是数组，而数组的起始位就是0
-    private static final int TYPE_NORMAl = 0; // 普通类型
-    private static final int TYPE_MORE = 1;   // 加载更多类型
+    private static final int TYPE_NORMAl = 1; // 普通类型
+    private static final int TYPE_MORE = 0;   // 加载更多类型
 
     private ArrayList<T> data;
 
@@ -58,12 +58,12 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         if (position == getCount() - 1) {// 最后一个普通布局
             return TYPE_MORE;
         } else {
-            return TYPE_NORMAl;
+                return getInnerType(position);
         }
     }
 
     // 子类可以重写此方法来更改返回的布局类型
-    public int getInnerType() {
+    public int getInnerType(int position) {
         return TYPE_NORMAl; // 默认就是普通类型
     }
 
@@ -78,7 +78,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
                 // 判断是否是加载更多的类型
                 holder = new MoreHolder(hasMore());
             } else {
-                holder = getHolder(); // 子类返回具体对象
+                holder = getHolder(i); // 子类返回具体对象
             }
         } else {
             holder = (BaseHolder) view.getTag();
@@ -105,7 +105,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
     }
 
     // 返回当前页面的holder对象，必须由子类实现
-    public abstract BaseHolder getHolder();
+    public abstract BaseHolder getHolder(int position);
 
     private boolean isLoadMore = false; // 标记是否加载更多
 
