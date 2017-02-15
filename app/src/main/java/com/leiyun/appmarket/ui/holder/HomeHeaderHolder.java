@@ -28,7 +28,7 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
     private ViewPager mViewPager;
     private ArrayList<String> data;
     private LinearLayout llContainer;
-    private int mPreviousPos;// 上个圆点位置
+    private int mPreviousPos = 0;// 上个圆点位置
 
     @Override
     public View initView() {
@@ -103,20 +103,20 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 position %= data.size();
 
+                // 上个点变为不选中
+                ImageView prePoint = (ImageView) llContainer.getChildAt(mPreviousPos);
+                prePoint.setImageResource(R.drawable.indicator_normal);
+
                 // 当前点被选中
                 ImageView point = (ImageView) llContainer.getChildAt(position);
                 point.setImageResource(R.drawable.indicator_selected);
 
-                // 上个点变为不选中
-                ImageView prePoint = (ImageView) llContainer.getChildAt(mPreviousPos);
-                prePoint.setImageResource(R.drawable.indicator_normal);
                 // 更新上一个点的位置信息
                 mPreviousPos = position;
             }
 
             @Override
             public void onPageSelected(int position) {
-
             }
 
             @Override
