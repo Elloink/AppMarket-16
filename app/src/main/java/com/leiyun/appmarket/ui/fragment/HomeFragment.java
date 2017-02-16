@@ -1,10 +1,12 @@
 package com.leiyun.appmarket.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.leiyun.appmarket.R;
 import com.leiyun.appmarket.domain.AppInfo;
 import com.leiyun.appmarket.http.protocol.HomeProtocol;
+import com.leiyun.appmarket.ui.activity.HomeDetailActivity;
 import com.leiyun.appmarket.ui.adapter.MyBaseAdapter;
 import com.leiyun.appmarket.ui.holder.BaseHolder;
 import com.leiyun.appmarket.ui.holder.HomeHeaderHolder;
@@ -48,6 +51,21 @@ public class HomeFragment extends BaseFragment {
         }
 
         view.setAdapter(new HomeAdapter(data));
+
+        // 对ListView设置点击事件
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                AppInfo appInfo = data.get(position - 1); // 去掉头部轮播条的布局
+
+                if (appInfo != null) {
+                    Intent intent = new Intent(UIUtils.getContext(), HomeDetailActivity.class);
+                    intent.putExtra("packageName", appInfo.packageName);
+                    startActivity(intent);
+                }
+            }
+        });
+
         return view;
     }
 

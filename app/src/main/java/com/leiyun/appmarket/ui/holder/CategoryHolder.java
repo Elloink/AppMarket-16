@@ -1,5 +1,6 @@
 package com.leiyun.appmarket.ui.holder;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,7 +19,7 @@ import com.lidroid.xutils.BitmapUtils;
  * Created by LeiYun on 2017/2/14 0014.
  */
 
-public class CategoryHolder extends BaseHolder<CategoryInfo> implements View.OnClickListener{
+public class CategoryHolder extends BaseHolder<CategoryInfo> implements View.OnClickListener {
 
     private TextView tvName1;
     private TextView tvName2;
@@ -63,10 +64,13 @@ public class CategoryHolder extends BaseHolder<CategoryInfo> implements View.OnC
         tvName2.setText(data.name2);
         tvName3.setText(data.name3);
 
+
         mBitmapUtils.display(ivIcon1, HttpHelper.URL + "image?name="
                 + data.url1);
+
         mBitmapUtils.display(ivIcon2, HttpHelper.URL + "image?name="
                 + data.url2);
+
         mBitmapUtils.display(ivIcon3, HttpHelper.URL + "image?name="
                 + data.url3);
     }
