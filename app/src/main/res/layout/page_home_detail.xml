@@ -8,10 +8,21 @@
         android:id="@+id/fl_detail_appinfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:background="@drawable/list_item_bg_selector"
         >
 
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_detail_safe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/list_item_bg_selector"
+        >
     </FrameLayout>
 
 </LinearLayout>

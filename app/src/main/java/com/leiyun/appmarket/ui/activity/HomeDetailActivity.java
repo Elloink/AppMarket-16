@@ -9,6 +9,7 @@ import com.leiyun.appmarket.R;
 import com.leiyun.appmarket.domain.AppInfo;
 import com.leiyun.appmarket.http.protocol.HomeDetailProtocol;
 import com.leiyun.appmarket.ui.holder.DetailAppInfoHolder;
+import com.leiyun.appmarket.ui.holder.DetailSafeHolder;
 import com.leiyun.appmarket.ui.view.LoadingPage;
 import com.leiyun.appmarket.utils.UIUtils;
 
@@ -62,6 +63,13 @@ public class HomeDetailActivity extends BaseActivity {
         DetailAppInfoHolder appInfoHolder = new DetailAppInfoHolder();
         appInfoHolder.setData(data);
         flDetailAppInfo.addView(appInfoHolder.getRootView());
+
+        // 初始化安全模块
+        FrameLayout flDetailSafe = (FrameLayout) view.findViewById(R.id.fl_detail_safe);
+        DetailSafeHolder detailSafeHolder = new DetailSafeHolder();
+        detailSafeHolder.setData(data);
+        flDetailSafe.addView(detailSafeHolder.getRootView());
+
 
         return view;
     }
