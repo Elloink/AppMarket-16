@@ -110,6 +110,7 @@ public class DetailSafeHolder extends BaseHolder<AppInfo> {
         }
 
         // 获取安全描述的完整高度
+        // 这里为什么两个参数都是0，那是因为在xml布局文件中我们已经定义了该view的宽和高填0后系统会自动根据xml来确定数值
         llDesRoot.measure(0,0);
         mDesHeight = llDesRoot.getMeasuredHeight();
 

@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 
 import com.leiyun.appmarket.R;
 import com.leiyun.appmarket.domain.AppInfo;
 import com.leiyun.appmarket.http.protocol.HomeDetailProtocol;
 import com.leiyun.appmarket.ui.holder.DetailAppInfoHolder;
+import com.leiyun.appmarket.ui.holder.DetailDesHolder;
+import com.leiyun.appmarket.ui.holder.DetailPicsHolder;
 import com.leiyun.appmarket.ui.holder.DetailSafeHolder;
 import com.leiyun.appmarket.ui.view.LoadingPage;
 import com.leiyun.appmarket.utils.UIUtils;
@@ -70,6 +73,18 @@ public class HomeDetailActivity extends BaseActivity {
         detailSafeHolder.setData(data);
         flDetailSafe.addView(detailSafeHolder.getRootView());
 
+
+        // 截图模块
+        HorizontalScrollView hsv = (HorizontalScrollView) view.findViewById(R.id.hsv_detail_pics);
+        DetailPicsHolder detailPicsHolder = new DetailPicsHolder();
+        detailPicsHolder.setData(data);
+        hsv.addView(detailPicsHolder.getRootView());
+
+        // 初始化描述
+        FrameLayout flDetailDes = (FrameLayout) view.findViewById(R.id.fl_detail_des);
+        DetailDesHolder detailDesHolder = new DetailDesHolder();
+        detailDesHolder.setData(data);
+        flDetailDes.addView(detailDesHolder.getRootView());
 
         return view;
     }
