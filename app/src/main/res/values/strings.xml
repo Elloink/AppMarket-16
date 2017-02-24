@@ -10,6 +10,8 @@
     <string name="remind_item_download">下载</string>
     <string name="remind_item_app_description">应用的描述</string>
     <string name="remind_item_subject_banner">标题</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 
     <string-array name="tab_names">
         <item>首页</item>

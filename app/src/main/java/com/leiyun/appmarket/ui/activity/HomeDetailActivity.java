@@ -2,6 +2,9 @@ package com.leiyun.appmarket.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -16,6 +19,7 @@ import com.leiyun.appmarket.ui.holder.DetailSafeHolder;
 import com.leiyun.appmarket.ui.view.LoadingPage;
 import com.leiyun.appmarket.utils.UIUtils;
 
+import static android.R.id.toggle;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 /**
@@ -28,6 +32,7 @@ public class HomeDetailActivity extends BaseActivity {
     private LoadingPage mLoadingPage;
     private String mPackageName;
     private AppInfo data;
+    private ActionBar mActionBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +58,37 @@ public class HomeDetailActivity extends BaseActivity {
 
         // 开始加载网络数据
         mLoadingPage.loadData();
+
+        initActionBar();
+    }
+
+    /**
+     * 初始化ActionBar
+     */
+    private void initActionBar() {
+        mActionBar = getSupportActionBar();
+
+        // 设置ActionBar显示出来
+        mActionBar.setIcon(R.drawable.ic_launcher);
+//        mActionBar.setDisplayUseLogoEnabled(true);
+        mActionBar.setDisplayShowHomeEnabled(true);
+
+        mActionBar.setDisplayHomeAsUpEnabled(true); // 显示左上角返回键，当和侧边栏结合是显示三个杠图片
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+
+            default:
+                break;
+        }
+        
+        return super.onOptionsItemSelected(item);
     }
 
     public View onCreateSuccessView() {

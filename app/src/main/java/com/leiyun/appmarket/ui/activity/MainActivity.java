@@ -4,9 +4,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.leiyun.appmarket.R;
@@ -25,18 +28,19 @@ public class MainActivity extends BaseActivity {
     private ViewPager mViewPager;
     private MyAdapter mAdapter;
     private ActionBar mActionBar;
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mActionBar = getSupportActionBar();
-        mActionBar.setIcon(R.drawable.ic_launcher);
-        mActionBar.setDisplayUseLogoEnabled(true);
-        mActionBar.setDisplayShowHomeEnabled(true);
 
-        mPagerTab = (PagerTab)findViewById(R.id.pager_tab);
+
+        mPagerTab = (PagerTab) findViewById(R.id.pager_tab);
         mViewPager = (ViewPager) findViewById(R.id.viewpage);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        initActionBar();
 
         mAdapter = new MyAdapter(getSupportFragmentManager());
 
@@ -65,6 +69,42 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 初始化ActionBar
+     */
+    private void initActionBar() {
+        mActionBar = getSupportActionBar();
+        // 设置ActionBar显示出来
+        mActionBar.setIcon(R.drawable.ic_launcher);
+        mActionBar.setDisplayUseLogoEnabled(true);
+        mActionBar.setDisplayShowHomeEnabled(true);
+
+
+        mActionBar.setHomeButtonEnabled(true); // home处可以点击
+        mActionBar.setDisplayHomeAsUpEnabled(true); // 显示左上角返回键，当和侧边栏结合是显示三个杠图片
+
+        // 抽屉的开关
+        toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
+        toggle.syncState(); // 同步状态，将DrawerLayout和开关关联在一起
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // 切换抽屉
+                toggle.onOptionsItemSelected(item);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * FragmentPagerAdapter是PagerAdapter的子类，如果ViewPage的页面是Fragment的话，就继承此类
+     */
     class MyAdapter extends FragmentPagerAdapter {
 
 
