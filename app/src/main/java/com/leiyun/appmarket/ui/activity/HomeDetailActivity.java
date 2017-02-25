@@ -3,7 +3,6 @@ package com.leiyun.appmarket.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,13 +13,11 @@ import com.leiyun.appmarket.domain.AppInfo;
 import com.leiyun.appmarket.http.protocol.HomeDetailProtocol;
 import com.leiyun.appmarket.ui.holder.DetailAppInfoHolder;
 import com.leiyun.appmarket.ui.holder.DetailDesHolder;
+import com.leiyun.appmarket.ui.holder.DetailDownloadHolder;
 import com.leiyun.appmarket.ui.holder.DetailPicsHolder;
 import com.leiyun.appmarket.ui.holder.DetailSafeHolder;
 import com.leiyun.appmarket.ui.view.LoadingPage;
 import com.leiyun.appmarket.utils.UIUtils;
-
-import static android.R.id.toggle;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 /**
  * 首页应用详情页
@@ -121,6 +118,13 @@ public class HomeDetailActivity extends BaseActivity {
         DetailDesHolder detailDesHolder = new DetailDesHolder();
         detailDesHolder.setData(data);
         flDetailDes.addView(detailDesHolder.getRootView());
+
+        // 初始化下载模块
+        FrameLayout flDetailDownload =
+                (FrameLayout)view.findViewById(R.id.fl_detail_download);
+        DetailDownloadHolder downloadHolder = new DetailDownloadHolder();
+        downloadHolder.setData(data);
+        flDetailDownload.addView(downloadHolder.getRootView());
 
         return view;
     }

@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
 
+import com.leiyun.appmarket.manager.ThreadManager;
 import com.leiyun.appmarket.ui.holder.BaseHolder;
 import com.leiyun.appmarket.ui.holder.MoreHolder;
 import com.leiyun.appmarket.utils.UIUtils;
@@ -114,7 +115,14 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         if (!isLoadMore) {
             isLoadMore = true;
 
-            new Thread() {
+//            new Thread() {
+//                @Override
+//                public void run() {
+//
+//                }
+//            }.start();
+
+            ThreadManager.getThreadPool().execute(new Runnable() {
                 @Override
                 public void run() {
                     final ArrayList<T> moreData = onLoadMore();
@@ -147,7 +155,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
                         }
                     });
                 }
-            }.start();
+            });
         }
     }
 

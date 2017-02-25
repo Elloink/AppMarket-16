@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.leiyun.appmarket.R;
+import com.leiyun.appmarket.manager.ThreadManager;
 import com.leiyun.appmarket.utils.UIUtils;
 
 /**
@@ -121,7 +122,15 @@ public abstract class LoadingPage extends FrameLayout {
 
             mCurrentState = STATE_LOAD_LOADING;
 
-            new Thread() {
+//            new Thread() {
+//                @Override
+//                public void run() {
+//
+//
+//                }
+//            }.start();
+
+            ThreadManager.getThreadPool().execute(new Runnable() {
                 @Override
                 public void run() {
                     final ResultState resultState = onLoad();
@@ -138,9 +147,8 @@ public abstract class LoadingPage extends FrameLayout {
                             }
                         }
                     });
-
                 }
-            }.start();
+            });
         }
     }
 
