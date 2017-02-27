@@ -64,6 +64,16 @@ public class ThreadManager {
             // 执行一个Runnable对象，具体运行时机由线程池决定
             executor.execute(r);
         }
+
+        /**
+         * 取消任务
+         */
+        public void cancel(Runnable runnable) {
+            if (executor != null) {
+                // 从线程队列中移除对象
+                executor.getQueue().remove(runnable);
+            }
+        }
     }
 
 }
