@@ -86,7 +86,9 @@ public class HomeFragment extends BaseFragment {
 
         @Override
         public BaseHolder<AppInfo> getHolder(int position) {
-            return new HomeHolder();
+            HomeHolder homeHolder = new HomeHolder();
+            homeHolder.setData(getItem(position));
+            return homeHolder;
         }
 
         // 此方法在子线程调用
